@@ -85,14 +85,16 @@
 
 	const sketch = (p5) => {
 		p5.setup = () => {
-            p5.textFont('Courier',100);
+
+
             p5.pixelDensity(2);
 			p5.createCanvas(canvX, canvY);
             p5.background('white');
-            let start = p5.createDiv('0')
-            start.position(canvX,canvY)
+
+
             overlay = p5.createGraphics(canvX,canvY);
             overlay.clear();
+            overlay.textFont('Courier',100);
 		};
 
 		p5.draw = () => {
@@ -102,11 +104,11 @@
             p5.line(p5.mouseX,0,p5.mouseX,canvY) ;
             p5.image(overlay,0,0);
             p5.translate(0,pad);
-            // p5.textSize(fontSize)
-            // p5.textAlign('right')
-            // p5.text('0',bl1[0],bl1[1] + fontOffset)
-            // p5.textAlign('left')
-            // p5.text(leng,bl2[0],bl2[1] + fontOffset)
+            overlay.textSize(fontSize)
+            overlay.textAlign('right')
+            overlay.text('0',bl1[0],bl1[1] + fontOffset)
+            overlay.textAlign('left')
+            overlay.text(leng,bl2[0],bl2[1] + fontOffset)
 
             p5.strokeWeight(1);
             p5.noFill();
