@@ -32,8 +32,9 @@
 
     let canvX:number = 1200; // canvas x dimension
     let canvY:number = 600; // canvas y dimension
-    let pad:number = 50; // padding
-    let vOffset:number = 0; // vertical offset
+    let pad:number = 100; // padding
+    let vOffset:number = 0; // vertical offset for baseline
+    let tvOffset:number = 10; // vertical offset for text
     let bl1 = [0+pad,canvY/2 + vOffset]; // baseline start point
     let bl2 = [canvX-pad,canvY/2 + vOffset]; // baseline end point
     let dTCT = canvY-bl1[1]; // distance to canvas top
@@ -77,13 +78,17 @@
     console.log(momentX,momentY);
 
     let fontSize = 30;
-    let fontOffset = fontSize*1.25;
+    let fontOffset = 0*fontSize*1.25;
+
 
 
 
     var overlay:any;
 
 	const sketch = (p5) => {
+        p5.preload = () =>{
+
+        };
 		p5.setup = () => {
 
 
@@ -91,25 +96,25 @@
 			p5.createCanvas(canvX, canvY);
             p5.background('white');
 
-
             overlay = p5.createGraphics(canvX,canvY);
             overlay.clear();
             overlay.textFont('Courier',100);
+
 		};
 
 		p5.draw = () => {
 
-            p5.clear();
-            p5.background('white');
-            p5.line(p5.mouseX,0,p5.mouseX,canvY) ;
-            p5.image(overlay,0,0);
             p5.translate(0,pad);
+            p5.background('white');
+
+            p5.image(overlay,0,0);
+            overlay.background('white')
             overlay.textSize(fontSize)
             overlay.textAlign('right')
             overlay.text('0',bl1[0],bl1[1] + fontOffset)
             overlay.textAlign('left')
             overlay.text(leng,bl2[0],bl2[1] + fontOffset)
-
+            p5.line(p5.mouseX,-pad,p5.mouseX,canvY) ;
             p5.strokeWeight(1);
             p5.noFill();
             p5.line(bl1[0],bl1[1],bl2[0],bl2[1]);
@@ -118,8 +123,12 @@
             for (let i=1; i <= steps; i++){
                 p5.line(momentX[i-1],momentY[i-1],momentX[i],momentY[i])
             };
-            
+
+
+
+
 		};
+
 
 	};
 </script>
@@ -136,7 +145,18 @@
         <div class="canvas">
             <P5 {sketch} />
         </div>
+        <label>
+            Length
+            <input type="number" bind:value={leng} id="length" min="1" max="200"/>
 
+        </label>
+        
+        <label>
+            UDL
+            <input type="range" bind:value={udl} min="100" max="1000" step="0.01" />
+            {udl}
+        </label>
+        
     </div>
 
 </div>
