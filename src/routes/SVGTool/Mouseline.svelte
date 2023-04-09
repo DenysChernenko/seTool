@@ -1,19 +1,15 @@
-<script lang="ts" context="module">
-    export let x:Number,y:Number;
-    export let m = { x: 0, y: 0 };
-
-
-    export function handleMousemove(event:any) {
-		m.x = event.clientX;
-		m.y = event.clientY;
-	}
+<script lang="ts">
+  export let x:Number;
+  export let y:Number;
+  
 </script>
 
 
 <path  
 fill = "none"
 stroke = "gray"
+stroke-width = 0.5
 d = "
-M {m.x}, 0 v {y}
+M {x}, 0 v {y}
 "
 />
