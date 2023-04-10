@@ -2,7 +2,7 @@
     export let x:Number,y:Number;
 
     var midY:Number = y/2;
-    var pad:Number = 0.1 * x;
+    var pad:Number = 0.3 * x;
     var end:Number = x - pad*2;
 
 </script>
