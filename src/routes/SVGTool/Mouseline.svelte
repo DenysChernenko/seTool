@@ -7,7 +7,8 @@
 
 <path  
 fill = "none"
-stroke = "gray"
+stroke = "red"
+opacity = 0.5
 stroke-width = 0.5
 d = "
 M {x}, 0 v {y}

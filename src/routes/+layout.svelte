@@ -4,7 +4,7 @@
     let buttonStyle = 'px-5 py-2 mx-2 text-white font-bold border border-1 border-green-700 border-rounded-xl bg-green-500'
 </script>
   
-<div class="container w-auto mx-auto">
+<div class="w-screen mx-auto h-screen">
     <ul class="">
         <li class="float-left ">
             <a href="/"><div class="{buttonStyle}">Home</div></a>
@@ -14,7 +14,7 @@
         </li>
 
     </ul>
-
+    <slot></slot>
 </div>
-<slot></slot>
+
 

@@ -11,6 +11,7 @@
 <path
 fill = "none"
 stroke = "gray"
+stroke-linecap = "round"
 d = "
 M {pad},{midY} h {end}
 "

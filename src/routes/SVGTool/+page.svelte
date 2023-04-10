@@ -3,8 +3,7 @@
     import type { PageData } from './$types';
     import Baseline from './Baseline.svelte';
 	import Mouseline from './Mouseline.svelte';
-
-    // import Mouseline, { handleMousemove } from './Mouseline.svelte';
+	import { islandStyle } from './styles';
 
     export let data: PageData;
     let scale: number = 500;
@@ -12,6 +11,7 @@
     let m = { x: 0, y: 0 };
     let relm = { x: 0 , y: 0};
     let canvasWidth:number;
+    let islandStyleString:any = $islandStyle;
 
     var canvX:number = scale * 2;
     var canvY:number = scale * 1;
@@ -42,10 +42,10 @@
 <svelte:window bind:innerWidth={screenW} on:resize={handleResize} on:mousemove={handleMousemove}/>
 
 
-<div class="container min-w-full min-h-fit my-auto mx-auto py-16 px- bg-slate-500" >
-    <div class="mx-auto my-auto border static " bind:clientWidth = {canvasWidth} >
-        <div class="absolute flex flex-row  text-gray-400  min-w-full min-h-full">
-            <div class="basis-1/4 float-left bg-slate-200">
+<div class="container min-w-full h-fit my-auto mx-auto bg-slate-500" >
+    <div class="mx-auto my-auto border static h-fit py-16" bind:clientWidth = {canvasWidth} >
+        <div class="absolute flex flex-row  text-gray-400  min-w-full">
+            <div class="basis-1/4 {islandStyleString}">
                 <!-- Debug Menu -->
                 <ul>
                     <li>
@@ -83,12 +83,12 @@
                 <!-- Debug Menu -->
             </div>
             <div class="basis-1/2"></div>
-            <div class="basis-1/4 float-right bg-slate-200">
+            <div class="basis-1/4 {islandStyleString}">
                 test
             </div>
         </div>
         
-        <svg class="bg-white" viewBox="0 0 {canvX} {canvY}"  >
+        <svg class="bg-slate-200" viewBox="0 0 {canvX} {canvY}"  >
             <!-- <Mouseline x={canvX} y={canvY} on:mousemove={handleMousemove}/> -->
             <Baseline x={canvX} y={canvY}/>
             <Mouseline x={relm.x} y={canvY}/>
