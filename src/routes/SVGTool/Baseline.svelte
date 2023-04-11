@@ -1,16 +1,17 @@
 <script lang="ts">
-    export let x:Number,y:Number;
-
-    var midY:Number = y/2;
-    var pad:Number = 0.3 * x;
-    var end:Number = x - pad*2;
+    export let x:number,y:number;
+    import "../../app.css";
+    var midY:number = y/2;
+    var pad:number = 0.3 * x;
+    var end:number = x - pad*2;
 
 </script>
 
 
 <path
 fill = "none"
-stroke = "gray"
+stroke = "black"
+stroke-width = 1
 stroke-linecap = "round"
 d = "
 M {pad},{midY} h {end}

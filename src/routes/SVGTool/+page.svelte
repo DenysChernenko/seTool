@@ -42,57 +42,63 @@
 <svelte:window bind:innerWidth={screenW} on:resize={handleResize} on:mousemove={handleMousemove}/>
 
 
-<div class="container min-w-full h-fit my-auto mx-auto bg-slate-500" >
-    <div class="mx-auto my-auto border static h-fit py-16" bind:clientWidth = {canvasWidth} >
-        <div class="absolute flex flex-row  text-gray-400  min-w-full">
-            <div class="basis-1/4 {islandStyleString}">
-                <!-- Debug Menu -->
-                <ul>
-                    <li>
-                        ---Screen---
-                    </li>
-                    <li>
-                        Width = {screenW}
-                    </li>
-                    <li>
-                        ---Canvas---
-                    </li>
-                    <li>
-                        relfactor = {relfactor}
-                    </li>
-                    <li>
-                        Canvas X Dim = {canvX}
-                    </li>
-                    
-                    <li>
-                        True Canvas X Dim = {canvasWidth}
-                    </li>
-                    <li>
-                        Canvas Y Dim = {canvY}
-                    </li>
-                    <li>
-                        ---Mouse---
-                    </li>
-                    <li>
-                        Mouse X = {m.x}
-                    </li>
-                    <li>
-                        Relative Mouse X = {relm.x}
-                    </li>
-                </ul>
-                <!-- Debug Menu -->
+
+<div class="flex-1 h-full" bind:clientWidth = {canvasWidth} >
+    <div class="absolute flex flex-row h-full text-gray-400  min-w-full">
+        <div class="basis-1/4 bg-emerald-50 p-2 z-10">
+            <div class="h-full w-full {islandStyleString}">
+            <!-- Debug Menu -->
+            <ul>
+                <li>
+                    ---Screen---
+                </li>
+                <li>
+                    Width = {screenW}
+                </li>
+                <li>
+                    ---Canvas---
+                </li>
+                <li>
+                    relfactor = {relfactor}
+                </li>
+                <li>
+                    Canvas X Dim = {canvX}
+                </li>
+                
+                <li>
+                    True Canvas X Dim = {canvasWidth}
+                </li>
+                <li>
+                    Canvas Y Dim = {canvY}
+                </li>
+                <li>
+                    ---Mouse---
+                </li>
+                <li>
+                    Mouse X = {m.x}
+                </li>
+                <li>
+                    Relative Mouse X = {relm.x}
+                </li>
+            </ul>
+            <!-- Debug Menu -->
             </div>
-            <div class="basis-1/2"></div>
-            <div class="basis-1/4 {islandStyleString}">
+
+        </div>
+        <div class="basis-1/2"></div>
+        <div class="basis-1/4 bg-emerald-50 p-2 z-10">
+            <div class="h-full w-full {islandStyleString}">
                 test
             </div>
         </div>
-        
-        <svg class="bg-slate-200" viewBox="0 0 {canvX} {canvY}"  >
-            <!-- <Mouseline x={canvX} y={canvY} on:mousemove={handleMousemove}/> -->
-            <Baseline x={canvX} y={canvY}/>
-            <Mouseline x={relm.x} y={canvY}/>
+
     </div>
+    
+    <svg class="bg-emerald-50" viewBox="0 0 {canvX} {canvY}"  >
+
+        <Baseline x={canvX} y={canvY}/>
+        <Mouseline x={relm.x} y={canvY}/>
 </div>
+
 
 
