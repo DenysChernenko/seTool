@@ -1,1 +1,1 @@
-![jComp](https://user-images.githubusercontent.com/67716495/231041142-895d0c9f-0fde-4c34-ac6d-dc942a4354ed.png)
+![jComp](https://user-images.githubusercontent.com/67716495/231041263-5bfa4731-d157-4185-8fb1-5249be71348c.png)
