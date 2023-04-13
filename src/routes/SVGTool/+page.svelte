@@ -4,6 +4,7 @@
     import Baseline from './Baseline.svelte';
 	import Mouseline from './Mouseline.svelte';
 	import { islandStyle } from './styles';
+    import {x,y} from "./canvas";
 
     export let data: PageData;
     let scale: number = 500;
@@ -16,6 +17,9 @@
     var canvX:number = scale * 2;
     var canvY:number = scale * 1;
     var relfactor:number = canvX/screenW;
+
+    $x = canvX;
+    $y = canvY;
 
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -43,9 +47,9 @@
 
 
 
-<div class="flex-1 h-full" bind:clientWidth = {canvasWidth} >
-    <div class="absolute flex flex-row h-full text-gray-400  min-w-full">
-        <div class="basis-1/4 bg-emerald-50 p-2 z-10">
+<div class="flex-1 h-full bg-emerald-50" bind:clientWidth = {canvasWidth} >
+    <div class="absolute flex flex-row min-h-screen text-gray-400  min-w-full ">
+        <div class="basis-1/4 bg-emerald-50 z-10">
             <div class="h-full w-full {islandStyleString}">
             <!-- Debug Menu -->
             <ul>
@@ -85,8 +89,8 @@
             </div>
 
         </div>
-        <div class="basis-1/2"></div>
-        <div class="basis-1/4 bg-emerald-50 p-2 z-10">
+        <div class="basis-1/2 "></div>
+        <div class="basis-1/4 bg-emerald-50 z-10">
             <div class="h-full w-full {islandStyleString}">
                 test
             </div>
@@ -94,10 +98,13 @@
 
     </div>
     
+
     <svg class="bg-emerald-50" viewBox="0 0 {canvX} {canvY}"  >
 
         <Baseline x={canvX} y={canvY}/>
+        {#if relm.x > 300 && relm.x < 700}
         <Mouseline x={relm.x} y={canvY}/>
+        {/if}
 </div>
 
 

@@ -1,9 +1,9 @@
 <script lang="ts">
-    export let x:number,y:number;
     import "../../app.css";
-    var midY:number = y/2;
-    var pad:number = 0.3 * x;
-    var end:number = x - pad*2;
+    import {x,y,pad} from "./canvas";
+    var midY:number = $y/2;
+    var padVal:number = $x*$pad;
+    var end:number = $x - padVal*2;
 
 </script>
 
@@ -14,6 +14,6 @@ stroke = "black"
 stroke-width = 1
 stroke-linecap = "round"
 d = "
-M {pad},{midY} h {end}
+M {padVal},{midY} h {end}
 "
 />
