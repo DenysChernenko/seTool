@@ -13,6 +13,7 @@
     let relm = { x: 0 , y: 0};
     let canvasWidth:number;
     let islandStyleString:any = $islandStyle;
+    let rightComponent:any;
 
     var canvX:number = scale * 2;
     var canvY:number = scale * 1;
@@ -27,7 +28,9 @@
         handleResize();
 	});
     
-
+    // function setRightComponent(componentName:String){
+    //     rightComponent = components.load;
+    // }
 
     function handleMousemove(event:any) {
 		m.x = event.clientX;
@@ -92,14 +95,21 @@
         <div class="basis-1/2 "></div>
         <div class="basis-1/4 z-10">
             <div class="h-full w-full {islandStyleString} border-l">
-                test
+                <ul class="flex flex-row">
+                    <li class="basis-1/2">
+                        <a href=""><div class="">Loads</div></a>
+                    </li>
+                    <li class="basis-1/2">
+                        <a href=""><div class="">Holder</div></a>
+                    </li>
+                </ul>
             </div>
         </div>
 
     </div>
     
 
-    <svg class="bg-zinc-500 my-auto" viewBox="0 0 {canvX} {canvY}"  >
+    <svg class="bg-zinc-200 my-auto" viewBox="0 0 {canvX} {canvY}"  >
 
         <Baseline x={canvX} y={canvY}/>
         {#if relm.x > 300 && relm.x < 700}
