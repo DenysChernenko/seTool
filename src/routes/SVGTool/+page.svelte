@@ -49,8 +49,8 @@
 
 <div class="flex-1 h-full bg-emerald-50" bind:clientWidth = {canvasWidth} >
     <div class="absolute flex flex-row min-h-screen text-gray-400  min-w-full ">
-        <div class="basis-1/4 bg-emerald-50 z-10">
-            <div class="h-full w-full {islandStyleString}">
+        <div class="basis-1/4 z-10">
+            <div class="h-full w-full {islandStyleString} border-r">
             <!-- Debug Menu -->
             <ul>
                 <li>
@@ -90,8 +90,8 @@
 
         </div>
         <div class="basis-1/2 "></div>
-        <div class="basis-1/4 bg-emerald-50 z-10">
-            <div class="h-full w-full {islandStyleString}">
+        <div class="basis-1/4 z-10">
+            <div class="h-full w-full {islandStyleString} border-l">
                 test
             </div>
         </div>
@@ -99,12 +99,15 @@
     </div>
     
 
-    <svg class="bg-emerald-50" viewBox="0 0 {canvX} {canvY}"  >
+    <svg class="bg-zinc-500 my-auto" viewBox="0 0 {canvX} {canvY}"  >
 
         <Baseline x={canvX} y={canvY}/>
         {#if relm.x > 300 && relm.x < 700}
         <Mouseline x={relm.x} y={canvY}/>
         {/if}
+
+
+
 </div>
 
 

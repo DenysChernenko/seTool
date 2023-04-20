@@ -1,3 +1,3 @@
 import { readable, writable } from "svelte/store";
 
-export const islandStyle = readable("bg-white border-l border-r border-emerald-900 p-4")
+export const islandStyle = readable("bg-zinc-800 border-emerald-500 p-4")

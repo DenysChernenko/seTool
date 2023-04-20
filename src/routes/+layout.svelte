@@ -6,7 +6,7 @@
 
 <div class="w-auto flex flex-col h-auto z-0 ">
 
-    <ul class="flex flex-row h-16 justify-center border-b border-emerald-900">
+    <ul class="flex flex-row h-16 justify-center border-b border-emerald-500 bg-zinc-800">
         <li class="">
             <a href="/"><div class="{buttonStyle}">Home</div></a>
         </li>
