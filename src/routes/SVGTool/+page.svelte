@@ -12,6 +12,7 @@
     let m = { x: 0, y: 0 };
     let relm = { x: 0 , y: 0};
     let canvasWidth:number;
+    let canvasHeight:number;
     let islandStyleString:any = $islandStyle;
     let rightComponent:any;
 
@@ -39,22 +40,26 @@
 	}
 
     async function handleResize(){
-        await sleep(100);
+        await sleep(200);
         screenW = canvasWidth;
         relfactor = canvX/screenW;
     }
 </script>
 
 
-<svelte:window bind:innerWidth={screenW} on:resize={handleResize} on:mousemove={handleMousemove}/>
+<svelte:window bind:innerWidth={screenW}  on:resize={handleResize} on:mousemove={handleMousemove}/>
 
 
+<div class="h-full relative bg-zinc-200 z-40" bind:clientWidth = {canvasWidth} bind:clientHeight = {canvasHeight}>
+    <svg class="absolute inset-0 w-full z-0 my-auto bg-zinc-200" viewBox="0 0 {canvX} {canvY}"  >
 
-<div class="flex-1 h-full bg-emerald-50" bind:clientWidth = {canvasWidth} >
-    <div class="absolute flex flex-row min-h-screen text-gray-400  min-w-full ">
-        <div class="basis-1/4 z-10">
-            <div class="h-full w-full {islandStyleString} border-r">
-            <!-- Debug Menu -->
+        <Baseline x={canvX} y={canvY}/>
+        {#if relm.x > 300 && relm.x < 700}
+        <Mouseline x={relm.x} y={canvY}/>
+        {/if}
+    </svg>
+    <div class="flex absolute inset-0 z-10 ">
+        <div class="basis-1/4 {islandStyleString} border-r">
             <ul>
                 <li>
                     ---Screen---
@@ -76,6 +81,9 @@
                     True Canvas X Dim = {canvasWidth}
                 </li>
                 <li>
+                    True Canvas Y Dim = {canvasHeight}
+                </li>
+                <li>
                     Canvas Y Dim = {canvY}
                 </li>
                 <li>
@@ -88,37 +96,16 @@
                     Relative Mouse X = {relm.x}
                 </li>
             </ul>
-            <!-- Debug Menu -->
-            </div>
-
         </div>
-        <div class="basis-1/2 "></div>
-        <div class="basis-1/4 z-10">
-            <div class="h-full w-full {islandStyleString} border-l">
-                <ul class="flex flex-row">
-                    <li class="basis-1/2">
-                        <a href=""><div class="">Loads</div></a>
-                    </li>
-                    <li class="basis-1/2">
-                        <a href=""><div class="">Holder</div></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
+        <div class="basis-2/4"></div>
+        <div class="basis-1/4 {islandStyleString} border-l">Wow</div>
     </div>
+
     
-
-    <svg class="bg-zinc-200 my-auto" viewBox="0 0 {canvX} {canvY}"  >
-
-        <Baseline x={canvX} y={canvY}/>
-        {#if relm.x > 300 && relm.x < 700}
-        <Mouseline x={relm.x} y={canvY}/>
-        {/if}
-
-
-
 </div>
+
+
+
 
 
 
