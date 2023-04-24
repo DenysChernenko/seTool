@@ -1,17 +1,24 @@
 <script>
     import "../app.css";
 
-    let buttonStyle = 'px-5 py-2 mr-5 my-2 text-white font-bold border border-emerald-900 rounded-md bg-emerald-500'
+    let buttonStyle = 'mx-2 my-2'
 </script>
 
 
 
-<div class="w-screen h-screen flex flex-col overflow-hidden">
-    <div class="flex basis-12 bg-zinc-800 justify-center border-b border-emerald-500 z-50">
-        <a href="/"><div class="{buttonStyle}">Home</div></a>
-        <a href="/SVGTool"><div class="{buttonStyle}">SVGTool</div></a>
-        <a href="/Debug"><div class="{buttonStyle}">Debug</div></a>
-    </div>
+<div class="w-screen h-screen flex flex-col " >
+    <div class="navbar border-b border-primary bg-zinc-800 z-50">
+        <div class="flex-1">
+          <a href="/" class="btn btn-ghost normal-case text-xl text-white"><img src="src/img/SVG/jComp.svg" alt=""></a>
+        </div>
+        <div class="flex-none">
+          <ul class="menu menu-horizontal px-1  text-white">
+            <li><a href="/" class="btn btn-ghost">Home</a></li>
+            <li><a href="/SVGTool" class="btn btn-ghost">Analyze</a></li>
+            <li><a href="/Debug" class="btn btn-ghost">Debug</a></li>
+          </ul>
+        </div>
+      </div>
 
     <slot></slot>
 

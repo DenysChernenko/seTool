@@ -50,7 +50,7 @@
 <svelte:window bind:innerWidth={screenW}  on:resize={handleResize} on:mousemove={handleMousemove}/>
 
 
-<div class="h-full relative bg-zinc-200 z-40" bind:clientWidth = {canvasWidth} bind:clientHeight = {canvasHeight}>
+<div class="h-full relative bg-zinc-200 z-40 overflow-hidden" bind:clientWidth = {canvasWidth} bind:clientHeight = {canvasHeight}>
     <svg class="absolute inset-0 w-full z-0 my-auto bg-zinc-200" viewBox="0 0 {canvX} {canvY}"  >
 
         <Baseline x={canvX} y={canvY}/>
@@ -98,7 +98,13 @@
             </ul>
         </div>
         <div class="basis-2/4"></div>
-        <div class="basis-1/4 {islandStyleString} border-l">Wow</div>
+        <div class="basis-1/4 {islandStyleString} border-l flex">
+            <div class="btn-group mx-auto">
+                <button class="btn btn-outline  btn-active">Global</button>
+                <button class="btn btn-outline ">Loads</button>
+                <button class="btn btn-outline ">Other</button>
+              </div>
+        </div>
     </div>
 
     
