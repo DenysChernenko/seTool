@@ -1,20 +1,24 @@
 <script lang="ts" >
+    export let data: PageData;
 	import { onMount } from 'svelte';
     import type { PageData } from './$types';
     import Baseline from './Baseline.svelte';
 	import Mouseline from './Mouseline.svelte';
 	import { islandStyle } from './styles';
     import {x,y} from "./canvas";
+    import RGlobal from './RGlobal.svelte';
+	import RLoads from './RLoads.svelte';
+	import ROther from './ROther.svelte';
 
-    export let data: PageData;
+
     let scale: number = 500;
-    let screenW: number;
+    let screenW: number =0;
     let m = { x: 0, y: 0 };
     let relm = { x: 0 , y: 0};
     let canvasWidth:number;
     let canvasHeight:number;
     let islandStyleString:any = $islandStyle;
-    let rightComponent:any;
+    let rComponent:string = "Global";
 
     var canvX:number = scale * 2;
     var canvY:number = scale * 1;
@@ -50,8 +54,8 @@
 <svelte:window bind:innerWidth={screenW}  on:resize={handleResize} on:mousemove={handleMousemove}/>
 
 
-<div class="h-full relative bg-zinc-200 z-40 overflow-hidden" bind:clientWidth = {canvasWidth} bind:clientHeight = {canvasHeight}>
-    <svg class="absolute inset-0 w-full z-0 my-auto bg-zinc-200" viewBox="0 0 {canvX} {canvY}"  >
+<div class="h-full relative bg-zinc-200 z-40 overflow-hidden " bind:clientWidth = {canvasWidth} bind:clientHeight = {canvasHeight}>
+    <svg class="absolute inset-0 w-full z-0 my-auto bg-neutral-50 " viewBox="0 0 {canvX} {canvY}"  >
 
         <Baseline x={canvX} y={canvY}/>
         {#if relm.x > 300 && relm.x < 700}
@@ -59,52 +63,74 @@
         {/if}
     </svg>
     <div class="flex absolute inset-0 z-10 ">
-        <div class="basis-1/4 {islandStyleString} border-r">
-            <ul>
-                <li>
-                    ---Screen---
-                </li>
-                <li>
-                    Width = {screenW}
-                </li>
-                <li>
-                    ---Canvas---
-                </li>
-                <li>
-                    relfactor = {relfactor}
-                </li>
-                <li>
-                    Canvas X Dim = {canvX}
-                </li>
-                
-                <li>
-                    True Canvas X Dim = {canvasWidth}
-                </li>
-                <li>
-                    True Canvas Y Dim = {canvasHeight}
-                </li>
-                <li>
-                    Canvas Y Dim = {canvY}
-                </li>
-                <li>
-                    ---Mouse---
-                </li>
-                <li>
-                    Mouse X = {m.x}
-                </li>
-                <li>
-                    Relative Mouse X = {relm.x}
-                </li>
-            </ul>
-        </div>
-        <div class="basis-2/4"></div>
-        <div class="basis-1/4 {islandStyleString} border-l flex">
-            <div class="btn-group mx-auto">
-                <button class="btn btn-outline  btn-active">Global</button>
-                <button class="btn btn-outline ">Loads</button>
-                <button class="btn btn-outline ">Other</button>
+        <div class="basis-1/4 {islandStyleString} border-r overflow-y-scroll ">
+            <div class="font-mono font-bold text-lg mb-3 text-center">
+                Joists
+            </div>
+            <div class="overflow-x-auto ">
+
+
               </div>
         </div>
+        <div class="basis-2/4"></div>
+        <div class="basis-1/4 {islandStyleString} border-l flex flex-col">
+            <div class="btn-group mx-auto">
+                <button class:btn-active="{rComponent === 'Global'}" on:click="{() => rComponent = "Global"}" class="btn btn-outline ">Global</button>
+                <button class:btn-active="{rComponent === 'Loads'}" on:click="{() => rComponent = "Loads"}" class="btn btn-outline ">Loads</button>
+                <button class:btn-active="{rComponent === 'Other'}" on:click="{() => rComponent = "Other"}" class="btn btn-outline ">Other</button>
+            </div>
+            <div class="">
+                {#if rComponent === 'Global'}
+                <RGlobal></RGlobal>
+                {:else if rComponent === 'Loads'}
+                <RLoads></RLoads>
+                {:else if rComponent === 'Other'}
+                <ROther></ROther>
+                {:else}
+                <div>Oops! Something Went Wrong</div>
+                {/if}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="absolute bottom-0 z-20">
+        <ul>
+            <li>
+                ---Screen---
+            </li>
+            <li>
+                Width = {screenW}
+            </li>
+            <li>
+                ---Canvas---
+            </li>
+            <li>
+                relfactor = {relfactor}
+            </li>
+            <li>
+                Canvas X Dim = {canvX}
+            </li>
+            
+            <li>
+                True Canvas X Dim = {canvasWidth}
+            </li>
+            <li>
+                True Canvas Y Dim = {canvasHeight}
+            </li>
+            <li>
+                Canvas Y Dim = {canvY}
+            </li>
+            <li>
+                ---Mouse---
+            </li>
+            <li>
+                Mouse X = {m.x}
+            </li>
+            <li>
+                Relative Mouse X = {relm.x}
+            </li>
+        </ul>
     </div>
 
     
