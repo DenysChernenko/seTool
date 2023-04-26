@@ -1,42 +1,53 @@
-<script lang="ts" context='module'>
-    import { onMount } from "svelte";
+<script lang="ts">
+  let jName:string;
+  let jUDL:string;
+  let jFilter:string;
+  let jFound:boolean;
 
+  interface MyObject {
+    Name: string;
+    UDL: number;
+  }
 
+  export let jdata: MyObject[] = [];
 </script>
-
-<table class="table w-full">
-    <!-- head -->
+<div class="w-full p-2">
+  <table class="table table-zebra w-full">
     <thead>
       <tr>
-        <th></th>
         <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
+        <th>UDL</th>
       </tr>
     </thead>
     <tbody>
-      <!-- row 1 -->
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      <!-- row 2 -->
-      <tr>
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      <!-- row 3 -->
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
+      {#each jdata as obj}
+        {#if obj.Name === jFilter}
+        <tr>
+          <td>{obj.Name}</td>
+          <td>{obj.UDL}</td>
+        </tr>
+        {/if}
+      {/each}
+      {#if jFilter == undefined || jFilter == ''}
+        <tr>
+          <td>
+            Please enter a Joist Designation
+          </td>
+          <td></td>
+        </tr>
+      {/if}
+
     </tbody>
   </table>
+  
+  <div class="w-full my-4 flex flex-row flex-wrap">
+  <input type="text" placeholder="Joist Designation" class="input input-bordered input-primary flex-1 mr-2 mb-2" bind:value={jFilter}>
+  <input type="text" placeholder="Joist UDL" class="input input-bordered input-primary flex-1 mr-2 mb-2" bind:value={jUDL}>
+  <button class="btn btn-primary">Add Joist</button>
+  </div>
 
-  <button class="btn" on:click={getUDL('1k1')}> Sup</button>
+  <div>
+    Joist Designation is : {jFilter}
+  </div>
+</div>
+

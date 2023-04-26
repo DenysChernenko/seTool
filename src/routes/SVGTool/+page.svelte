@@ -9,16 +9,18 @@
     import RGlobal from './RGlobal.svelte';
 	import RLoads from './RLoads.svelte';
 	import ROther from './ROther.svelte';
+	import JoistTable from './JoistTable.svelte';
 
 
     let scale: number = 500;
-    let screenW: number =0;
+    let screenW: number = 0;
     let m = { x: 0, y: 0 };
     let relm = { x: 0 , y: 0};
     let canvasWidth:number;
     let canvasHeight:number;
     let islandStyleString:any = $islandStyle;
     let rComponent:string = "Global";
+    let jdata = [];
 
     var canvX:number = scale * 2;
     var canvY:number = scale * 1;
@@ -31,6 +33,8 @@
 
 	onMount(async () => {
         handleResize();
+        const res = await fetch('src/public/joist.json');
+        jdata = await res.json();
 	});
     
     // function setRightComponent(componentName:String){
@@ -67,18 +71,21 @@
             <div class="font-mono font-bold text-lg mb-3 text-center">
                 Joists
             </div>
-            <div class="overflow-x-auto ">
-
-
-              </div>
+            <div class="overflow-x-auto">
+                <JoistTable {jdata}/>
+            </div>
         </div>
         <div class="basis-2/4"></div>
         <div class="basis-1/4 {islandStyleString} border-l flex flex-col">
+            <div class="font-mono font-bold text-lg mb-3 text-center">
+                Parameters
+            </div>
             <div class="btn-group mx-auto">
                 <button class:btn-active="{rComponent === 'Global'}" on:click="{() => rComponent = "Global"}" class="btn btn-outline ">Global</button>
                 <button class:btn-active="{rComponent === 'Loads'}" on:click="{() => rComponent = "Loads"}" class="btn btn-outline ">Loads</button>
                 <button class:btn-active="{rComponent === 'Other'}" on:click="{() => rComponent = "Other"}" class="btn btn-outline ">Other</button>
             </div>
+            
             <div class="">
                 {#if rComponent === 'Global'}
                 <RGlobal></RGlobal>
