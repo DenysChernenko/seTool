@@ -67,7 +67,7 @@
         {/if}
     </svg>
     <div class="flex absolute inset-0 z-10 ">
-        <div class="basis-1/4 {islandStyleString} border-r overflow-y-scroll ">
+        <div class="basis-1/5 {islandStyleString} border-r overflow-y-scroll ">
             <div class="font-mono font-bold text-lg mb-3 text-center">
                 Joists
             </div>
@@ -75,8 +75,8 @@
                 <JoistTable {jdata}/>
             </div>
         </div>
-        <div class="basis-2/4"></div>
-        <div class="basis-1/4 {islandStyleString} border-l flex flex-col">
+        <div class="basis-3/5"></div>
+        <div class="basis-1/5 {islandStyleString} border-l flex flex-col">
             <div class="font-mono font-bold text-lg mb-3 text-center">
                 Parameters
             </div>
