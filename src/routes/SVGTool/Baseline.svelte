@@ -1,9 +1,10 @@
 <script lang="ts">
     import "../../app.css";
-    import {x,y,pad} from "./canvas";
-    var midY:number = $y/2;
-    var padVal:number = $x*$pad;
-    var end:number = $x - padVal*2;
+    import { x, marginX, midY, blength} from "./canvas";
+
+    $: $blength = $x-2*$marginX;
+
+
 
 </script>
 
@@ -11,9 +12,9 @@
 <path
 fill = "none"
 stroke = "black"
-stroke-width = 1
+stroke-width = 1.5
 stroke-linecap = "round"
 d = "
-M {padVal},{midY} h {end}
+M {$marginX},{$midY} h {$blength}
 "
 />

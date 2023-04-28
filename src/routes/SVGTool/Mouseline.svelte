@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { jcolor } from "../globalStyle";
+  
   export let x:Number;
   export let y:Number;
   
@@ -7,9 +9,9 @@
 
 <path  
 fill = "none"
-stroke = "red"
-opacity = 0.75
-stroke-width = 0.5
+stroke = "{$jcolor}"
+opacity = 1
+stroke-width = 1
 d = "
 M {x}, 0 v {y}
 "
